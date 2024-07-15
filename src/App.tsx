@@ -12,25 +12,19 @@ import useFetchMovies from './hooks/useFetchMovies';
 function App(): React.JSX.Element {
   const {movies, loading, error} = useFetchMovies();
 
-  if (loading) {
-    return (
-      <View style={[styles.container, styles.containerCentered]}>
-        <ActivityIndicator size="large" color="blue" />
-      </View>
-    );
-  }
-
-  if (error) {
-    return (
-      <View style={[styles.container, styles.containerCentered]}>
-        <Text style={styles.textError}>{error}</Text>
-      </View>
-    );
-  }
-
   return (
     <SafeAreaView style={styles.container}>
-      <MovieList movies={movies} />
+      {error ? (
+        <View style={styles.containerCentered}>
+          <Text style={styles.textError}>{error}</Text>
+        </View>
+      ) : loading ? (
+        <View style={styles.containerCentered}>
+          <ActivityIndicator size="large" color="blue" />
+        </View>
+      ) : (
+        <MovieList movies={movies} />
+      )}
     </SafeAreaView>
   );
 }
@@ -41,6 +35,7 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   containerCentered: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
