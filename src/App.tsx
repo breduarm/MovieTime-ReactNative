@@ -1,19 +1,52 @@
-import type { PropsWithChildren } from 'react';
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import MovieList from './components/MovieList';
+import useFetchMovies from './hooks/useFetchMovies';
 
 function App(): React.JSX.Element {
+  const {movies, loading, error} = useFetchMovies();
+
+  if (loading) {
+    return (
+      <View style={[styles.container, styles.containerCentered]}>
+        <ActivityIndicator size="large" color="blue" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={[styles.container, styles.containerCentered]}>
+        <Text style={styles.textError}>{error}</Text>
+      </View>
+    );
+  }
+
   return (
-    <SafeAreaView>
-      <Text>Movie Time</Text>
+    <SafeAreaView style={styles.container}>
+      <MovieList movies={movies} />
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+  },
+  containerCentered: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textError: {
+    color: 'red',
+  },
+});
 
 export default App;

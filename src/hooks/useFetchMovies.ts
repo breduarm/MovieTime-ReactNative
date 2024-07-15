@@ -4,7 +4,7 @@ import Movie from '../types/entities/Movie';
 
 const useFetchMovies = () => {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const useFetchMovies = () => {
   const fetchMovies = async () => {
     try {
       const movies = await getMovies();
-      setData(movies);
+      setMovies(movies);
     } catch (error) {
       console.log(error);
       setError('There was an error trying to fetch movies');
@@ -23,7 +23,7 @@ const useFetchMovies = () => {
     }
   };
 
-  return {data, loading, error};
+  return {movies, loading, error};
 };
 
 export default useFetchMovies;
