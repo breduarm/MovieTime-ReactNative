@@ -10,13 +10,13 @@ export const getMovies = async (): Promise<MovieResponse[]> => {
   return json.movies;
 };
 
-export const putMovieById = async (id: string, movieUpdated: Movie): Promise<MovieResponse> => {
+export const putMovieById = async (id: string, updatedMovie: Movie): Promise<MovieResponse> => {
   const request: RequestInit = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(movieUpdated),
+    body: JSON.stringify(updatedMovie),
   }
   const response = await fetch(`https://reactnative.dev/movies/${id}`, request);
 

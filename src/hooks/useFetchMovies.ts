@@ -16,8 +16,8 @@ const useFetchMovies = () => {
       const movies = await getMovies();
       setMovies(movies);
     } catch (error) {
-      console.log(error);
-      setError('There was an error trying to fetch movies');
+      console.error(error);
+      setError('There was an error fetching movies');
     } finally {
       setLoading(false);
     }
