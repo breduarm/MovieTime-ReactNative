@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import LoginForm from './components/LoginForm';
 import MovieList from './components/MovieList';
 import useFetchMovies from './hooks/useFetchMovies';
 
@@ -23,7 +24,10 @@ function App(): React.JSX.Element {
           <ActivityIndicator size="large" color="blue" />
         </View>
       ) : (
-        <MovieList movies={movies} />
+        <>
+          <LoginForm />
+          <MovieList movies={movies} />
+        </>
       )}
     </SafeAreaView>
   );

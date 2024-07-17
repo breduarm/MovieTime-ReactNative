@@ -7,7 +7,7 @@ import {
 } from '../services/AuthService';
 import User from '../types/entities/User';
 
-export const useAuth = () => {
+const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -79,3 +79,5 @@ export const useAuth = () => {
     fetchUserProfile,
   };
 };
+
+export default useAuth;
