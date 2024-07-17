@@ -72,7 +72,7 @@ export const useAuth = () => {
     user,
     token,
     authError: error,
-    isLoading: loading,
+    authLoading: loading,
     loginUser,
     registerUser,
     logoutUser,
